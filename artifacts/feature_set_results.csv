@@ -1,0 +1,4 @@
+Feature Set,Features,CV R2,CV RMSE
+Original features,"R&D Spend, Administration, Marketing Spend, State",0.9340039511036281,9550.6761056801
+Without Administration,"R&D Spend, Marketing Spend, State",0.9363685209523176,9655.46667063226
+Engineered spending features,"Total Spend, R&D Ratio, State",0.8885179943844042,12551.74957981379
