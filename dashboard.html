@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>50 Startups ML Lab</title>
+  <style>
+    :root {
+      --ink: #18212f; --muted: #677386; --paper: #f5f2ea; --card: #fffdf8;
+      --line: #d9d4c8; --blue: #2855d9; --cyan: #20a9b6; --orange: #ee7b3b;
+      --shadow: 0 16px 40px rgba(33, 40, 52, .09);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: Inter, "Noto Sans TC", system-ui, sans-serif; }
+    header { padding: 30px 36px 22px; border-bottom: 1px solid var(--line); background: rgba(255,253,248,.82); }
+    .eyebrow { color: var(--blue); font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { margin: 8px 0 6px; font-family: Georgia, serif; font-size: clamp(30px, 4vw, 50px); letter-spacing: -.04em; }
+    header p { margin: 0; color: var(--muted); max-width: 780px; }
+    main { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 22px; padding: 22px; }
+    .panel, .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); }
+    .panel { padding: 20px; align-self: start; position: sticky; top: 18px; }
+    h2, h3 { margin: 0; }
+    .section-title { margin: 20px 0 10px; color: var(--muted); font-size: 11px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    label { display: block; margin: 11px 0 5px; font-size: 12px; font-weight: 800; }
+    select, input { width: 100%; border: 1px solid var(--line); border-radius: 10px; background: white; padding: 10px 11px; color: var(--ink); }
+    input[type="range"] { padding: 0; accent-color: var(--blue); }
+    .range-line { display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; }
+    button { width: 100%; margin-top: 18px; padding: 12px; border: 0; border-radius: 12px; color: white; background: var(--blue); font-weight: 800; cursor: pointer; }
+    button:disabled { opacity: .6; cursor: wait; }
+    .content { display: grid; gap: 18px; min-width: 0; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .metric { padding: 18px; }
+    .metric .label { color: var(--muted); font-size: 11px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+    .metric .value { margin-top: 7px; font-family: Georgia, serif; font-size: 29px; font-weight: 700; }
+    .metric .note { margin-top: 5px; color: var(--muted); font-size: 11px; }
+    .grid-2 { display: grid; grid-template-columns: 1.15fr .85fr; gap: 18px; }
+    .card { padding: 18px; overflow: hidden; }
+    .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .card-head span { color: var(--muted); font-size: 11px; }
+    svg { width: 100%; min-height: 330px; display: block; }
+    .feature-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 18px; }
+    .chip { padding: 7px 9px; border-radius: 999px; background: #e9edff; color: #243e9a; font-size: 12px; font-weight: 800; }
+    .prediction { padding: 22px; border-radius: 14px; background: var(--ink); color: white; }
+    .prediction small { color: #b9c4d5; font-weight: 700; }
+    .prediction strong { display: block; margin-top: 6px; font-family: Georgia, serif; font-size: 40px; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th, td { padding: 10px; text-align: left; border-bottom: 1px solid var(--line); white-space: nowrap; }
+    th { position: sticky; top: 0; background: var(--card); font-size: 10px; letter-spacing: .05em; text-transform: uppercase; }
+    #status { min-height: 18px; margin-top: 10px; color: var(--muted); font-size: 12px; }
+    @media (max-width: 1050px) { main { grid-template-columns: 1fr; } .panel { position: static; } .metrics { grid-template-columns: repeat(2,1fr); } .grid-2 { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { header, main { padding: 16px; } .metrics { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">CRISP-DM Interactive Workbench</div>
+    <h1>50 Startups ML Lab</h1>
+    <p>即時比較模型、10 種特徵選擇演算法與資料切分設定，並使用目前組合預測新創公司獲利。</p>
+  </header>
+  <main>
+    <aside class="panel">
+      <h2>實驗控制台</h2>
+      <div class="section-title">Model & Feature Selection</div>
+      <label for="model">模型</label>
+      <select id="model"><option>Linear Regression</option><option>Random Forest</option><option>XGBoost</option></select>
+      <label for="algorithm">特徵選擇演算法</label>
+      <select id="algorithm"></select>
+      <label for="featureCount">選取特徵數：<span id="featureCountValue">1</span></label>
+      <input id="featureCount" type="range" min="1" max="5" value="1">
+      <label for="testSize">測試集比例：<span id="testSizeValue">20%</span></label>
+      <input id="testSize" type="range" min="10" max="40" step="5" value="20">
+      <label for="randomState">Random State</label>
+      <input id="randomState" type="number" min="0" max="10000" value="42">
+      <div class="section-title">Tree Model Parameters</div>
+      <label for="estimators">Estimators</label><input id="estimators" type="number" min="50" max="1000" value="300">
+      <label for="depth">Max Depth</label><input id="depth" type="number" min="1" max="12" value="3">
+      <label for="rate">Learning Rate</label><input id="rate" type="number" min=".01" max=".5" step=".01" value=".05">
+      <div class="section-title">Startup Prediction Input</div>
+      <label for="rd">R&D Spend</label><input id="rd" type="number" min="0" value="100000">
+      <label for="admin">Administration</label><input id="admin" type="number" min="0" value="120000">
+      <label for="marketing">Marketing Spend</label><input id="marketing" type="number" min="0" value="250000">
+      <label for="state">State</label><select id="state"><option>California</option><option>Florida</option><option>New York</option></select>
+      <button id="run">重新分析並預測</button>
+      <div id="status"></div>
+    </aside>
+    <section class="content">
+      <div class="metrics">
+        <article class="card metric"><div class="label">Test RMSE</div><div class="value" id="rmse">-</div><div class="note">越低越好</div></article>
+        <article class="card metric"><div class="label">Test R²</div><div class="value" id="r2">-</div><div class="note">越接近 1 越好</div></article>
+        <article class="card metric"><div class="label">Training Rows</div><div class="value" id="trainRows">-</div><div class="note">目前訓練資料筆數</div></article>
+        <article class="card metric"><div class="label">Test Rows</div><div class="value" id="testRows">-</div><div class="note">目前測試資料筆數</div></article>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <div class="card-head"><h3>實際值 vs 預測值</h3><span>越靠近對角線越準確</span></div>
+          <svg id="scatter" viewBox="0 0 640 360"></svg>
+        </article>
+        <article class="card">
+          <div class="card-head"><h3>目前實驗</h3><span id="experiment"></span></div>
+          <div class="feature-list" id="features"></div>
+          <div class="prediction"><small>預測 Profit</small><strong id="profit">-</strong></div>
+        </article>
+      </div>
+      <article class="card">
+        <div class="card-head"><h3>10 種演算法特徵排名</h3><span>依目前資料切分重新計算</span></div>
+        <div class="table-wrap"><table><thead id="rankHead"></thead><tbody id="rankBody"></tbody></table></div>
+      </article>
+    </section>
+  </main>
+  <script>
+    const $ = id => document.getElementById(id);
+    const algorithms = ["Correlation","Mutual Information","Chi-Square","ANOVA F-Test","SelectKBest","RFE","SFS","Lasso","Random Forest","XGBoost"];
+    algorithms.forEach(name => $("algorithm").add(new Option(name, name)));
+    $("featureCount").oninput = e => $("featureCountValue").textContent = e.target.value;
+    $("testSize").oninput = e => $("testSizeValue").textContent = `${e.target.value}%`;
+    const money = n => new Intl.NumberFormat("en-US", {style:"currency",currency:"USD",maximumFractionDigits:0}).format(n);
+    function payload() { return {
+      model_name:$("model").value, algorithm:$("algorithm").value, feature_count:+$("featureCount").value,
+      test_size:+$("testSize").value/100, random_state:+$("randomState").value, n_estimators:+$("estimators").value,
+      max_depth:+$("depth").value, learning_rate:+$("rate").value, rd_spend:+$("rd").value,
+      administration:+$("admin").value, marketing_spend:+$("marketing").value, state:$("state").value
+    }; }
+    function drawScatter(points) {
+      const svg=$("scatter"), W=640,H=360,p=48, values=points.flatMap(d=>[d.actual,d.predicted]);
+      const min=Math.min(...values), max=Math.max(...values), scaleX=v=>p+(v-min)/(max-min)*(W-2*p), scaleY=v=>H-p-(v-min)/(max-min)*(H-2*p);
+      let s=`<rect width="${W}" height="${H}" fill="#fffdf8"/><line x1="${p}" y1="${H-p}" x2="${W-p}" y2="${p}" stroke="#ee7b3b" stroke-width="2" stroke-dasharray="7 6"/>`;
+      for(let i=0;i<5;i++){const v=min+(max-min)*i/4,x=scaleX(v),y=scaleY(v);s+=`<line x1="${x}" y1="${p}" x2="${x}" y2="${H-p}" stroke="#e5e0d5"/><line x1="${p}" y1="${y}" x2="${W-p}" y2="${y}" stroke="#e5e0d5"/>`;}
+      s+=points.map(d=>`<circle cx="${scaleX(d.actual)}" cy="${scaleY(d.predicted)}" r="6" fill="#2855d9" opacity=".78"><title>Actual ${money(d.actual)} / Predicted ${money(d.predicted)}</title></circle>`).join("");
+      s+=`<text x="${W/2}" y="${H-8}" text-anchor="middle" fill="#677386" font-size="12">Actual Profit</text><text x="15" y="${H/2}" transform="rotate(-90 15 ${H/2})" text-anchor="middle" fill="#677386" font-size="12">Predicted Profit</text>`;
+      svg.innerHTML=s;
+    }
+    function renderTable(data) {
+      $("rankHead").innerHTML="<tr><th>Rank</th>"+data.algorithms.map(a=>`<th>${a}</th>`).join("")+"</tr>";
+      $("rankBody").innerHTML=data.rankings.map(row=>`<tr><td><b>Rank ${row.rank}</b></td>${data.algorithms.map(a=>`<td>${row[a]}</td>`).join("")}</tr>`).join("");
+    }
+    async function run() {
+      $("run").disabled=true; $("status").textContent="正在重新排序、訓練與評估...";
+      try {
+        const response=await fetch("/api/analyze",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload())});
+        if(!response.ok) throw new Error((await response.json()).detail || "分析失敗");
+        const data=await response.json();
+        $("rmse").textContent=money(data.metrics.rmse); $("r2").textContent=data.metrics.r_squared.toFixed(4);
+        $("trainRows").textContent=data.metrics.training_rows; $("testRows").textContent=data.metrics.test_rows;
+        $("profit").textContent=money(data.predicted_profit); $("experiment").textContent=`${data.selection.model} · ${data.selection.algorithm}`;
+        $("features").innerHTML=data.selection.selected_features.map((f,i)=>`<span class="chip">${i+1}. ${f}</span>`).join("");
+        drawScatter(data.prediction_points); renderTable(data); $("status").textContent="分析完成";
+      } catch(e) { $("status").textContent=`錯誤：${e.message}`; } finally { $("run").disabled=false; }
+    }
+    $("run").onclick=run; run();
+  </script>
+</body>
+</html>

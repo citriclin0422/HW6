@@ -61,6 +61,23 @@
 
 ## 執行方式
 
+### Streamlit Community Cloud
+
+Streamlit 部署入口為：
+
+```text
+streamlit_app.py
+```
+
+在 [Streamlit Community Cloud](https://share.streamlit.io/) 選擇此 GitHub
+repository 與 `main` 分支，Main file path 設為 `streamlit_app.py` 即可部署。
+
+本地啟動 Streamlit：
+
+```powershell
+streamlit run streamlit_app.py
+```
+
 安裝相依套件：
 
 ```powershell
