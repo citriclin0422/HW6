@@ -1,26 +1,51 @@
 Algorithm,Number of Features,Selected Features,RMSE,R-squared
-Correlation Analysis,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
-Correlation Analysis,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
-Correlation Analysis,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York']",8242.782649482115,0.916097640352974
-Correlation Analysis,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York', 'state__State_Florida']",8254.686589379771,0.9158551276282121
-Correlation Analysis,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York', 'state__State_Florida', 'numeric__Administration']",9055.957323497805,0.8987266414319838
-SelectKBest F-Regression,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
-SelectKBest F-Regression,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
-SelectKBest F-Regression,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York']",8242.782649482115,0.916097640352974
-SelectKBest F-Regression,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York', 'state__State_Florida']",8254.686589379771,0.9158551276282121
-SelectKBest F-Regression,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York', 'state__State_Florida', 'numeric__Administration']",9055.957323497805,0.8987266414319838
-Recursive Feature Elimination,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
-Recursive Feature Elimination,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
-Recursive Feature Elimination,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration']",8995.905803361416,0.900065308303732
-Recursive Feature Elimination,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida']",9055.95775226214,0.8987266318421848
-Recursive Feature Elimination,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida', 'state__State_New York']",9055.957323497805,0.8987266414319839
-Lasso Regression,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
-Lasso Regression,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
-Lasso Regression,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration']",8995.905803361416,0.900065308303732
-Lasso Regression,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida']",9055.95775226214,0.8987266318421848
-Lasso Regression,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida', 'state__State_New York']",9055.957323497805,0.8987266414319839
-Random Forest Importance,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
-Random Forest Importance,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
-Random Forest Importance,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration']",8995.905803361416,0.900065308303732
-Random Forest Importance,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida']",9055.95775226214,0.8987266318421848
-Random Forest Importance,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida', 'state__State_New York']",9055.957323497805,0.8987266414319839
+Correlation,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
+Correlation,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
+Correlation,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York']",8242.782649482115,0.916097640352974
+Correlation,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York', 'state__State_Florida']",8254.686589379771,0.9158551276282121
+Correlation,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York', 'state__State_Florida', 'numeric__Administration']",9055.957323497805,0.8987266414319838
+Mutual Information,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
+Mutual Information,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
+Mutual Information,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration']",8995.905803361416,0.900065308303732
+Mutual Information,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida']",9055.95775226214,0.8987266318421848
+Mutual Information,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida', 'state__State_New York']",9055.957323497805,0.8987266414319839
+Chi-Square,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
+Chi-Square,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
+Chi-Square,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York']",8242.782649482115,0.916097640352974
+Chi-Square,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York', 'state__State_Florida']",8254.686589379771,0.9158551276282121
+Chi-Square,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York', 'state__State_Florida', 'numeric__Administration']",9055.957323497805,0.8987266414319838
+ANOVA F-Test,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
+ANOVA F-Test,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
+ANOVA F-Test,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York']",8242.782649482115,0.916097640352974
+ANOVA F-Test,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York', 'state__State_Florida']",8254.686589379771,0.9158551276282121
+ANOVA F-Test,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York', 'state__State_Florida', 'numeric__Administration']",9055.957323497805,0.8987266414319838
+SelectKBest,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
+SelectKBest,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
+SelectKBest,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York']",8242.782649482115,0.916097640352974
+SelectKBest,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York', 'state__State_Florida']",8254.686589379771,0.9158551276282121
+SelectKBest,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'state__State_New York', 'state__State_Florida', 'numeric__Administration']",9055.957323497805,0.8987266414319838
+RFE,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
+RFE,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
+RFE,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration']",8995.905803361416,0.900065308303732
+RFE,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida']",9055.95775226214,0.8987266318421848
+RFE,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida', 'state__State_New York']",9055.957323497805,0.8987266414319839
+SFS,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
+SFS,2,"['numeric__R&D Spend', 'numeric__Administration']",9152.274782350907,0.8965609365509308
+SFS,3,"['numeric__R&D Spend', 'numeric__Administration', 'numeric__Marketing Spend']",8995.905803361416,0.900065308303732
+SFS,4,"['numeric__R&D Spend', 'numeric__Administration', 'numeric__Marketing Spend', 'state__State_Florida']",9055.957752262142,0.8987266318421848
+SFS,5,"['numeric__R&D Spend', 'numeric__Administration', 'numeric__Marketing Spend', 'state__State_Florida', 'state__State_New York']",9055.95732349781,0.8987266414319838
+Lasso,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
+Lasso,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
+Lasso,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration']",8995.905803361416,0.900065308303732
+Lasso,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida']",9055.95775226214,0.8987266318421848
+Lasso,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida', 'state__State_New York']",9055.957323497805,0.8987266414319839
+Random Forest,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
+Random Forest,2,"['numeric__R&D Spend', 'numeric__Marketing Spend']",8206.32881316586,0.9168381183550246
+Random Forest,3,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration']",8995.905803361416,0.900065308303732
+Random Forest,4,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida']",9055.95775226214,0.8987266318421848
+Random Forest,5,"['numeric__R&D Spend', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida', 'state__State_New York']",9055.957323497805,0.8987266414319839
+XGBoost,1,['numeric__R&D Spend'],7714.334890830185,0.9265108109341951
+XGBoost,2,"['numeric__R&D Spend', 'state__State_New York']",7718.101892038499,0.9264390221258125
+XGBoost,3,"['numeric__R&D Spend', 'state__State_New York', 'numeric__Marketing Spend']",8242.782649482118,0.916097640352974
+XGBoost,4,"['numeric__R&D Spend', 'state__State_New York', 'numeric__Marketing Spend', 'numeric__Administration']",9015.112541602852,0.8996381209725024
+XGBoost,5,"['numeric__R&D Spend', 'state__State_New York', 'numeric__Marketing Spend', 'numeric__Administration', 'state__State_Florida']",9055.957323497802,0.8987266414319839

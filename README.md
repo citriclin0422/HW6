@@ -1,51 +1,54 @@
-# HW6：新創公司利潤預測與特徵選擇
+# HW6：50 Startups 獲利預測
 
-本專案使用 Kaggle `50_Startups.csv` 資料集，依循 **CRISP-DM** 流程完成新創公司利潤預測、特徵選擇、模型評估與 FastAPI 部署。
-
-## 簡報與動畫影片
-
-- [專案簡報：Startup_Profit_Prediction.pptx](Startup_Profit_Prediction.pptx)
-- [動畫解說影片：Startup_Profit_Prediction_Animated.mp4](Startup_Profit_Prediction_Animated.mp4)
-
-動畫影片長度約 2 分 30 秒，包含 15 個動畫場景與繁體中文女性旁白，內容涵蓋完整的分析與部署流程。
+本專案使用 Kaggle `50_Startups.csv` 資料集，依照 **CRISP-DM** 流程建立新創公司獲利預測模型。流程包含資料理解、資料前處理、10 種特徵選擇演算法比較、線性迴歸模型評估，以及 FastAPI 模型部署。
 
 ## 專案目標
 
-透過以下特徵預測新創公司的利潤 `Profit`：
-
-- `R&D Spend`：研發支出
-- `Administration`：行政支出
-- `Marketing Spend`：行銷支出
-- `State`：公司所在州別
-
-## 主要發現
-
-| 特徵 | 與利潤的相關係數 |
-|---|---:|
-| `R&D Spend` | 0.9729 |
-| `Marketing Spend` | 0.7478 |
-| `Administration` | 0.2007 |
-
-- 研發支出是最重要且最穩定的利潤預測指標。
-- 行銷支出能提供額外的泛化預測能力。
-- 行政支出與州別的額外預測能力有限。
-- 由於資料集只有 50 筆，模型應作為決策支援工具，不宜用於因果推論。
-
-## 模型評估
-
-五折交叉驗證顯示，最佳特徵組合為：
+使用下列特徵預測新創公司的 `Profit`：
 
 - `R&D Spend`
+- `Administration`
 - `Marketing Spend`
+- `State`
 
-| 評估指標 | 結果 |
+## 10 種特徵選擇演算法
+
+本專案比較以下方法：
+
+1. Correlation
+2. Mutual Information
+3. Chi-Square
+4. ANOVA F-Test
+5. SelectKBest
+6. RFE
+7. SFS
+8. Lasso
+9. Random Forest
+10. XGBoost
+
+資料經標準化及 One-Hot Encoding 後，共有 5 個可排名特徵。圖表比較每種演算法依序加入 Rank 1 至 Rank 5 特徵後的 Test RMSE 與 Test R-squared。
+
+## 特徵選擇效能比較
+
+![Feature selection performance all-in-one](artifacts/feature_selection_performance_allinone.png)
+
+## 10 種演算法排名比較
+
+下方表格以 `Rank` 為列，並以 `Algorithm-1 (Correlation)` 至 `Algorithm-10 (XGBoost)` 為欄，顯示各演算法產生的特徵排名。
+
+![Top 10 feature selection algorithms comparison](artifacts/feature_selection_10_algorithms_comparison.png)
+
+## 最佳結果
+
+10 種方法的 Rank 1 都是 `R&D Spend`。僅使用此特徵時，各方法得到相同的最佳測試集表現：
+
+| 指標 | 結果 |
 |---|---:|
-| CV RMSE | **8,883.70** |
-| CV R-squared | **0.9389** |
-| 最終模型 Test RMSE | **9,055.96** |
-| 最終模型 Test R-squared | **0.8987** |
+| Test RMSE | **7,714.33** |
+| Test R-squared | **0.9265** |
+| 最佳特徵 | **R&D Spend** |
 
-最終部署模型採用多元線性迴歸，在小型資料集上具備較佳的穩定性與商業可解釋性。
+若需選擇單一方法，Correlation 計算速度快、結果容易解釋，且在本資料集取得相同最佳效能。
 
 ## 執行方式
 
@@ -55,7 +58,7 @@
 pip install -r requirements.txt
 ```
 
-訓練模型：
+訓練模型並重新產生圖表：
 
 ```powershell
 python .\train_linear_regression.py
@@ -73,14 +76,13 @@ API 文件：
 http://127.0.0.1:8000/docs
 ```
 
-## 專案檔案
+## 主要輸出
 
 | 檔案 | 說明 |
 |---|---|
-| `Startup_Profit_Prediction.pptx` | 專案成果簡報 |
-| `Startup_Profit_Prediction_Animated.mp4` | 繁體中文動畫解說影片 |
-| `train_linear_regression.py` | 模型訓練與評估 |
-| `app.py` | FastAPI 預測服務 |
-| `50_Startups.csv` | 原始資料集 |
-| `HW6.md` | CRISP-DM 專案說明 |
-| `artifacts/` | 圖表與分析輸出 |
+| `train_linear_regression.py` | CRISP-DM 訓練、評估及輸出流程 |
+| `artifacts/feature_selection_performance_allinone.csv` | 10 種演算法、不同特徵數量的完整評估結果 |
+| `artifacts/feature_selection_results.csv` | 各特徵選擇方法的分數與排名 |
+| `artifacts/feature_selection_performance_allinone.png` | Test RMSE、R-squared 與排名綜合圖表 |
+| `artifacts/feature_selection_10_algorithms_comparison.png` | 10 種演算法比較圖表 |
+| `artifacts/best_model.joblib` | FastAPI 可載入的訓練模型 |
