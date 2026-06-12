@@ -594,8 +594,8 @@ def create_feature_selection_performance_figure(
         **{"Selected Features": results["Selected Features"].map(str)}
     ).to_csv(ARTIFACT_DIR / "feature_selection_performance_allinone.csv", index=False)
 
-    figure = plt.figure(figsize=(24, 14))
-    grid = figure.add_gridspec(2, 2, height_ratios=[3.2, 1.8])
+    figure = plt.figure(figsize=(26, 16))
+    grid = figure.add_gridspec(2, 2, height_ratios=[2.8, 2.2])
     axes = [figure.add_subplot(grid[0, 0]), figure.add_subplot(grid[0, 1])]
     table_axis = figure.add_subplot(grid[1, :])
     for algorithm, algorithm_results in results.groupby("Algorithm", sort=False):
@@ -663,10 +663,12 @@ def create_feature_selection_performance_figure(
         colWidths=[0.07] + [0.093] * len(rankings),
     )
     summary_table.auto_set_font_size(False)
-    summary_table.set_fontsize(7.5)
-    summary_table.scale(1, 1.55)
+    summary_table.set_fontsize(11)
+    summary_table.scale(1, 2.0)
     for column in range(len(rankings) + 1):
-        summary_table[(0, column)].set_text_props(weight="bold")
+        header_cell = summary_table[(0, column)]
+        header_cell.set_text_props(weight="bold", fontsize=11.5)
+        header_cell.set_height(header_cell.get_height() * 1.35)
 
     figure.suptitle(
         "Top 10 Feature Selection Algorithms - Test RMSE and R-squared Comparison"
