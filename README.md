@@ -10,6 +10,7 @@
 | Infographic | [Kaggle50startup.png](Kaggle50startup.png) | Hand-drawn Excalidraw-style infographic |
 | NBLM ppt | [Startup_Profit_Prediction.pptx](Startup_Profit_Prediction.pptx) | 完整簡報檔，整理新創公司獲利預測流程、資料分析、模型比較與主要研究結論。 |
 | 動態影音 | [Startup_Profit_Prediction_Animated.mp4](Startup_Profit_Prediction_Animated.mp4) | 動態影音版專案導覽，以視覺化方式呈現 CRISP-DM 流程、特徵選擇與模型成果。 |
+| Streamlit APP | [https://20260612hw6.streamlit.app/](https://20260612hw6.streamlit.app/) | 線上互動式機器學習實驗室，可調整模型、10 種特徵選擇演算法、Top-K、資料切分與模型參數，即時查看 RMSE、R-squared、特徵排名及 Profit 預測。 |
 
 ## 專案目標
 
